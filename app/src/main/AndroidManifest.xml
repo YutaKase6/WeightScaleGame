@@ -22,7 +22,35 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MyPageActivity"
+            android:label="@string/title_activity_my_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FriendDetailActivity"
+            android:label="@string/title_activity_friend_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MyRecordActivity"
+            android:label="@string/title_activity_my_record"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FriendListActivity"
+            android:label="@string/title_activity_friend_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AppSettingActivity"
+            android:label="@string/title_activity_app_setting"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MySettingActivity"
+            android:label="@string/title_activity_my_setting_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
