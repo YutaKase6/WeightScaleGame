@@ -3,18 +3,15 @@
     <string name="start_tap_text">Tap to Start</string>
     <string name="title_activity_login">Sign in</string>
 
+    <string name="NCMB_app_key">f2c32b100ef8d52d6c26e551a132ef953d47598516fbc040ca689f5c7f2511e3</string>
+    <string name="NCMB_client_key">98e81650a4848de54e442524878b10a1bb4c7e5e351c1d9f6d80919b635814b5</string>
+
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="prompt_user_name">User Name</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_my_page">MyPageActivity</string>
     <string name="title_activity_friend_detail">FriendDetailActivity</string>
