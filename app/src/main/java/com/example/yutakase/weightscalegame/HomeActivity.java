@@ -25,11 +25,16 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         userName = (TextView)findViewById(R.id.userText);
-        userName.setText("hogehoge");
+        userName.setText(getUserName()+"さんようこそ");
 
         Button leftButton = (Button)findViewById(R.id.leftButton);
         Button centerButton = (Button)findViewById(R.id.centerButton);
         Button rightButton = (Button)findViewById(R.id.rightButton);
+    }
+
+    //ユーザ名を取得
+    public String getUserName() {
+        return "hogehoge";
     }
 
 }
