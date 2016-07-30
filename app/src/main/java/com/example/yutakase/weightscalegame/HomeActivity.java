@@ -6,27 +6,35 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * ホーム画面
  */
 public class HomeActivity extends AppCompatActivity {
 
+    private TextView userName;
+    private Button leftButton;
+    private Button centerButton;
+    private Button rightButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        userName = (TextView)findViewById(R.id.userText);
+        userName.setText(getUserName()+"さんようこそ");
+
+        Button leftButton = (Button)findViewById(R.id.leftButton);
+        Button centerButton = (Button)findViewById(R.id.centerButton);
+        Button rightButton = (Button)findViewById(R.id.rightButton);
+    }
+
+    //ユーザ名を取得
+    public String getUserName() {
+        return "hogehoge";
     }
 
 }
