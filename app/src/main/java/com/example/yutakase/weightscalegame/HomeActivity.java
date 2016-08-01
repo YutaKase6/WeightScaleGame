@@ -9,13 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.nifty.cloud.mb.core.DoneCallback;
-import com.nifty.cloud.mb.core.NCMBException;
-import com.nifty.cloud.mb.core.NCMBUser;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 /**
  * ホーム画面
  */
