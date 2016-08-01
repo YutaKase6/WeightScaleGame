@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.nifty.cloud.mb.core.NCMB;
 import com.nifty.cloud.mb.core.NCMBObject;
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 public class HomeActivity extends AppCompatActivity {
 
     private TextView userNameView;
+    private ImageView image;
     private Button leftButton;
     private Button centerButton;
     private Button rightButton;
@@ -37,6 +39,10 @@ public class HomeActivity extends AppCompatActivity {
 
         userNameView = (TextView)findViewById(R.id.userText);
         userNameView.setText(userName+"さんようこそ");
+
+        //画像の読み込み
+        image = (ImageView)findViewById(R.id.avator);
+        image.setImageResource(R.drawable.chara1);
 
         Button leftButton = (Button)findViewById(R.id.leftButton);
         Button centerButton = (Button)findViewById(R.id.centerButton);
