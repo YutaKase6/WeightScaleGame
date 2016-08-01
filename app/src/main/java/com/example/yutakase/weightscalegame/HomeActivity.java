@@ -1,6 +1,5 @@
 package com.example.yutakase.weightscalegame;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -38,7 +37,6 @@ public class HomeActivity extends AppCompatActivity {
         Button leftButton = (Button)findViewById(R.id.leftButton);
         Button centerButton = (Button)findViewById(R.id.centerButton);
         Button rightButton = (Button)findViewById(R.id.rightButton);
-        ButterKnife.bind(this);
     }
 
     //ユーザ名を取得
@@ -46,8 +44,4 @@ public class HomeActivity extends AppCompatActivity {
         return "hogehoge";
     }
 
-    @OnClick(R.id.centerButton)
-    void b(){
-        startActivity(new Intent(this,MyPageActivity.class));
-    }
 }
