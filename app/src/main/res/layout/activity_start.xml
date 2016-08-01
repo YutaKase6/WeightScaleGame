@@ -17,4 +17,13 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/start_tap_text" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="log out"
+        android:layout_toEndOf="@+id/start_text"
+        android:layout_toRightOf="@+id/start_text" />
+
 </RelativeLayout>
