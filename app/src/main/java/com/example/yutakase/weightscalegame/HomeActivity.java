@@ -8,24 +8,35 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import com.nifty.cloud.mb.core.NCMB;
+import com.nifty.cloud.mb.core.NCMBObject;
+import com.nifty.cloud.mb.core.NCMBUser;
+
+import org.json.JSONObject;
 
 /**
  * ホーム画面
  */
 public class HomeActivity extends AppCompatActivity {
 
-    private TextView userName;
+    private TextView userNameView;
     private Button leftButton;
     private Button centerButton;
     private Button rightButton;
+
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        userName = (TextView)findViewById(R.id.userText);
-        userName.setText(getUserName()+"さんようこそ");
+        //ユーザー名の取得
+        NCMBUser ncmb = NCMBUser.getCurrentUser();
+        userName = ncmb.getUserName();
+
+        userNameView = (TextView)findViewById(R.id.userText);
+        userNameView.setText(userName+"さんようこそ");
 
         Button leftButton = (Button)findViewById(R.id.leftButton);
         Button centerButton = (Button)findViewById(R.id.centerButton);
