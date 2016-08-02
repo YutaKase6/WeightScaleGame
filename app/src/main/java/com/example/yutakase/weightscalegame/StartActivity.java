@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.nifty.cloud.mb.core.DoneCallback;
 import com.nifty.cloud.mb.core.NCMB;
+import com.nifty.cloud.mb.core.NCMBException;
 import com.nifty.cloud.mb.core.NCMBUser;
 
 import butterknife.BindString;
@@ -37,5 +39,15 @@ public class StartActivity extends AppCompatActivity {
         } else {
             startActivity(new Intent(this, LoginActivity.class));
         }
+    }
+    @OnClick(R.id.logoutButton)
+    void a (){
+        NCMBUser.logoutInBackground(new DoneCallback() {
+            @Override
+            public void done(NCMBException e) {
+
+            }
+        });
+
     }
 }
