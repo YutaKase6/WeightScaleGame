@@ -19,4 +19,18 @@
     <string name="title_activity_friend_list">FriendListActivity</string>
     <string name="title_activity_app_setting">AppSettingActivity</string>
     <string name="title_activity_my_setting_main">MySettingMainActivity</string>
+
+    <!--MyPage and FriendDetail-->
+    <string name="goal_text">目標まであと</string>
+    <string name="kg">Kg</string>
+    <string name="running_before_text">継続</string>
+    <string name="running_after_text">日目</string>
+
+    <!--String related to Database-->
+    <string name="open_user_data_class">openUserData</string>
+    <string name="user_name_key">userName</string>
+    <string name="offset_weight_key">offsetWeight</string>
+    <string name="running_days_key">runningDays</string>
+    <string name="comment_key">comment</string>
+
 </resources>

@@ -12,48 +12,60 @@
     tools:context="com.example.yutakase.weightscalegame.MyPageActivity"
     tools:showIn="@layout/activity_my_page">
 
-    <TextView
+    <!-- progress -->
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="目標までhogekg"
-        android:id="@+id/goal_text_view"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp" />
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="継続hoge日目"
-        android:id="@+id/textView2"
-        android:textSize="30sp"
-        android:layout_below="@+id/goal_text_view"
-        android:layout_centerHorizontal="true" />
+    <RelativeLayout
+        android:id="@+id/my_page_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/login_progress">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/chara1"
-        android:foregroundGravity="center_horizontal"
-        android:scaleType="centerCrop"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:clickable="true" />
+        <TextView
+            android:id="@+id/goal_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="目標までhogekg"
+            android:textSize="30sp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Record"
-        android:id="@+id/record_button"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="43dp"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"
-        android:textSize="30dp"
-        android:background="#f9fd21"
-        android:clickable="false" />
+        <TextView
+            android:id="@+id/running_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/goal_text_view"
+            android:layout_centerHorizontal="true"
+            android:text="継続hoge日目"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:foregroundGravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:src="@drawable/chara1" />
+
+        <Button
+            android:id="@+id/record_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="#f9fd21"
+            android:text="Record"
+            android:textSize="30sp" />
+    </RelativeLayout>
 </RelativeLayout>

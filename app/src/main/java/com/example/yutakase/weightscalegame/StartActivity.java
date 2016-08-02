@@ -1,8 +1,10 @@
 package com.example.yutakase.weightscalegame;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.nifty.cloud.mb.core.DoneCallback;
 import com.nifty.cloud.mb.core.NCMB;
@@ -40,12 +42,14 @@ public class StartActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
         }
     }
+
     @OnClick(R.id.logoutButton)
-    void a (){
+    void a(final View view) {
         NCMBUser.logoutInBackground(new DoneCallback() {
             @Override
             public void done(NCMBException e) {
-
+                Snackbar.make(view, "log out.", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
