@@ -1,35 +1,48 @@
 package com.example.yutakase.weightscalegame;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nifty.cloud.mb.core.NCMBUser;
 
 /**
  * ホーム画面
  */
 public class HomeActivity extends AppCompatActivity {
 
-    private TextView userName;
+    private TextView userNameView;
+    private ImageView image;
     private Button leftButton;
     private Button centerButton;
     private Button rightButton;
+
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        userName = (TextView)findViewById(R.id.userText);
-        userName.setText(getUserName()+"さんようこそ");
+        //ユーザー名の取得
+        NCMBUser ncmb = NCMBUser.getCurrentUser();
+        userName = ncmb.getUserName();
 
-        Button leftButton = (Button)findViewById(R.id.leftButton);
-        Button centerButton = (Button)findViewById(R.id.centerButton);
-        Button rightButton = (Button)findViewById(R.id.rightButton);
+        userNameView = (TextView) findViewById(R.id.userText);
+        userNameView.setText(userName + "さんようこそ");
+
+        //画像の読み込み
+        image = (ImageView) findViewById(R.id.avator);
+        image.setImageResource(R.drawable.chara1);
+
+        Button leftButton = (Button) findViewById(R.id.leftButton);
+        Button centerButton = (Button) findViewById(R.id.centerButton);
+        Button rightButton = (Button) findViewById(R.id.rightButton);
+
     }
 
     //ユーザ名を取得
@@ -37,4 +50,9 @@ public class HomeActivity extends AppCompatActivity {
         return "hogehoge";
     }
 
+    //アバターをクリックするとMyPageActivityに飛びます
+    public void ImageClick(View v) {
+        Intent intent = new Intent(this, MyPageActivity.class);
+        startActivity(intent);
+    }
 }
