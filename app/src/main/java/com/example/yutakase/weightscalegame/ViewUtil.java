@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
@@ -59,33 +60,36 @@ public final class ViewUtil {
     }
 
     /**
-     * 増減体重に応じて画像を返すメソッド
-     * 画像のリソースIDを返却
+     * 増減体重に応じて画像のリソースIDを返すメソッド
      * Created by takeshishimizu on 2016/08/03.
      */
-    public static int getImageByWeight(double currentWeight, int avatarId, Context context) throws FileNotFoundException {
+    public static int getImageByWeight(double currentWeight, int avatarId) throws FileNotFoundException {
+        int[][] resources = {{R.drawable.chara1pudgy, R.drawable.chara1normal, R.drawable.chara1ideal, R.drawable.chara1gaunt},
+                {R.drawable.chara2pudgy, R.drawable.chara2normal, R.drawable.chara2ideal, R.drawable.chara2gaunt}};
+
         NCMBUser user = NCMBUser.getCurrentUser();
         double startWeight = user.getDouble("startWeight");
         double goalWeight = user.getDouble("goalWeight");
         double standardWeight = (startWeight - goalWeight) / 3;
         double marginWeight = currentWeight - goalWeight;
 
-        String imageName = "chara" + avatarId;
+        int index = 0;
         if(marginWeight > standardWeight) {
             //デブ
-            imageName += "pudgy";
+            index = 0;
         }else if(marginWeight <= standardWeight && marginWeight >= 0) {
             //ふつう
-            imageName += "normal";
+            index = 1;
         }else if(0 >= marginWeight && marginWeight >= -standardWeight) {
             //ちょいやせ
-            imageName += "ideal";
+            index = 2;
         }else {
             //やせ
-            imageName += "gaunt";
+            index = 3;
         }
 
-        int resourceId = context.getResources().getIdentifier(imageName, "Drawable", context.getPackageName());;
+        //int resourceId = context.getResources().getIdentifier(imageName, "Drawable", context.getPackageName());;
+        int resourceId = resources[avatarId-1][index];
         //エラー処理
         if(resourceId == 0) {
             throw new FileNotFoundException("アバターを読み込めませんでした");

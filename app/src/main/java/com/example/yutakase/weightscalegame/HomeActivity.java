@@ -57,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         image = (ImageView) findViewById(R.id.avator);
         int imageId = 0;
         try {
-            imageId = ViewUtil.getImageByWeight(70, 2, this);
+            imageId = ViewUtil.getImageByWeight(ncmb.getDouble("currentWeight"), 1);
         }catch(FileNotFoundException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
