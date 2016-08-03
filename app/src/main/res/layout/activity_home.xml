@@ -10,12 +10,27 @@
         android:layout_alignParentTop="true"
         android:gravity="center"/>
 
-    <ImageView
-        android:id="@+id/avator"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userText"
-        android:onClick="ImageClick"/>
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/userText"
+            android:paddingTop="20dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"/>
+
+        <ImageView
+            android:id="@+id/avator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userText"
+            android:onClick="ImageClick"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
