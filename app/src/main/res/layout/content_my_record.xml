@@ -12,4 +12,104 @@
     tools:context="com.example.yutakase.weightscalegame.MyRecordActivity"
     tools:showIn="@layout/activity_my_record">
 
+    <TextView
+        android:id="@+id/today_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/goal_weight"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginTop="21dp"
+        android:layout_toLeftOf="@+id/today_kg"
+        android:layout_toStartOf="@+id/today_kg"
+        android:text="今日"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/goal_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/today_weight"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/today_weight"
+        android:text="60.5"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/last_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/today_weight"
+        android:layout_alignStart="@+id/today_weight"
+        android:layout_below="@+id/today_weight"
+        android:layout_marginTop="21dp"
+        android:text="昨日"
+        android:textSize="30dp" />
+
+
+    <TextView
+        android:id="@+id/goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/goal_weight"
+        android:layout_alignLeft="@+id/today"
+        android:layout_alignStart="@+id/today"
+        android:text="目標体重"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/last_weight"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:text="今日の体重"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/last"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/last_weight"
+        android:layout_alignLeft="@+id/today"
+        android:layout_alignStart="@+id/today"
+        android:text="前回の体重"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/goal_kg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/goal_weight"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="kg"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/today_kg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/last_weight"
+        android:layout_alignLeft="@+id/goal_kg"
+        android:layout_alignStart="@+id/goal_kg"
+        android:layout_marginEnd="51dp"
+        android:layout_marginRight="51dp"
+        android:text="kg"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/last_kg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/last_weight"
+        android:layout_alignLeft="@+id/today_kg"
+        android:layout_alignStart="@+id/today_kg"
+        android:text="kg"
+        android:textSize="24dp" />
+
+
 </RelativeLayout>
