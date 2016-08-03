@@ -60,26 +60,28 @@ public final class ViewUtil {
      * 画像のリソースIDを返却
      * Created by takeshishimizu on 2016/08/03.
      */
-    public static int getImageByWeight(double currentWeight, int avatarId) {
+    public static int getImageByWeight(double currentWeight, int avatarId, Context context) {
         NCMBUser user = NCMBUser.getCurrentUser();
         double startWeight = user.getDouble("startWeight");
         double goalWeight = user.getDouble("goalWeight");
         double standardWeight = (startWeight - goalWeight) / 3;
         double marginWeight = currentWeight - goalWeight;
 
-        int resourceId;
-
+        String imageName = "chara" + avatarId;
         if(marginWeight > standardWeight) {
             //デブ
-
+            imageName += "pudgy";
         }else if(marginWeight <= standardWeight && marginWeight >= 0) {
             //ふつう
-
+            imageName += "normal";
         }else if(0 >= marginWeight && marginWeight >= -standardWeight) {
             //ちょいやせ
-
+            imageName += "ideal";
         }else {
             //やせ
+            imageName += "gaunt";
         }
+
+        return context.getResources().getIdentifier(imageName, "Drawable", context.getPackageName());
     }
 }
