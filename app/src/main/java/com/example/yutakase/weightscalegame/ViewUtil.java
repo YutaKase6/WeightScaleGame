@@ -7,6 +7,8 @@ import android.content.Context;
 import android.os.Build;
 import android.view.View;
 
+import com.nifty.cloud.mb.core.NCMBUser;
+
 /**
  * View関係の共通処理の関数群
  * <p/>
@@ -50,6 +52,34 @@ public final class ViewUtil {
             // and hide the relevant UI components.
             progressView.setVisibility(show ? View.VISIBLE : View.GONE);
             HideView.setVisibility(show ? View.GONE : View.VISIBLE);
+        }
+    }
+
+    /**
+     * 増減体重に応じて画像を返すメソッド
+     * 画像のリソースIDを返却
+     * Created by takeshishimizu on 2016/08/03.
+     */
+    public static int getImageByWeight(double currentWeight, int avatarId) {
+        NCMBUser user = NCMBUser.getCurrentUser();
+        double startWeight = user.getDouble("startWeight");
+        double goalWeight = user.getDouble("goalWeight");
+        double standardWeight = (startWeight - goalWeight) / 3;
+        double marginWeight = currentWeight - goalWeight;
+
+        int resourceId;
+
+        if(marginWeight > standardWeight) {
+            //デブ
+
+        }else if(marginWeight <= standardWeight && marginWeight >= 0) {
+            //ふつう
+
+        }else if(0 >= marginWeight && marginWeight >= -standardWeight) {
+            //ちょいやせ
+
+        }else {
+            //やせ
         }
     }
 }
