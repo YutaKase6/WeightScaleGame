@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nifty.cloud.mb.core.NCMBObject;
 import com.nifty.cloud.mb.core.NCMBQuery;
 import com.nifty.cloud.mb.core.NCMBUser;
+
+import java.io.FileNotFoundException;
 
 /**
  * ホーム画面
@@ -52,7 +55,13 @@ public class HomeActivity extends AppCompatActivity {
 
         //画像の読み込み
         image = (ImageView) findViewById(R.id.avator);
-        image.setImageResource(R.drawable.chara1);
+        int imageId = 0;
+        try {
+            imageId = ViewUtil.getImageByWeight(70, 2, this);
+        }catch(FileNotFoundException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        image.setImageResource(imageId);
 
         Button leftButton = (Button) findViewById(R.id.leftButton);
         Button centerButton = (Button) findViewById(R.id.centerButton);

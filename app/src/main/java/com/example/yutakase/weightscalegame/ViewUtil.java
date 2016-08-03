@@ -5,9 +5,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 
 import com.nifty.cloud.mb.core.NCMBUser;
+
+import java.io.FileNotFoundException;
 
 /**
  * View関係の共通処理の関数群
@@ -60,7 +63,7 @@ public final class ViewUtil {
      * 画像のリソースIDを返却
      * Created by takeshishimizu on 2016/08/03.
      */
-    public static int getImageByWeight(double currentWeight, int avatarId, Context context) {
+    public static int getImageByWeight(double currentWeight, int avatarId, Context context) throws FileNotFoundException {
         NCMBUser user = NCMBUser.getCurrentUser();
         double startWeight = user.getDouble("startWeight");
         double goalWeight = user.getDouble("goalWeight");
@@ -82,6 +85,11 @@ public final class ViewUtil {
             imageName += "gaunt";
         }
 
-        return context.getResources().getIdentifier(imageName, "Drawable", context.getPackageName());
+        int resourceId = context.getResources().getIdentifier(imageName, "Drawable", context.getPackageName());;
+        //エラー処理
+        if(resourceId == 0) {
+            throw new FileNotFoundException("アバターを読み込めませんでした");
+        }
+        return resourceId;
     }
 }
