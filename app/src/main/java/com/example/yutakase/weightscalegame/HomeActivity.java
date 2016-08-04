@@ -12,11 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nifty.cloud.mb.core.FindCallback;
+import com.nifty.cloud.mb.core.NCMBException;
 import com.nifty.cloud.mb.core.NCMBObject;
 import com.nifty.cloud.mb.core.NCMBQuery;
 import com.nifty.cloud.mb.core.NCMBUser;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
  * ホーム画面
@@ -57,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         image = (ImageView) findViewById(R.id.avator);
         int imageId = 0;
         try {
-            imageId = ViewUtil.getImageByWeight(ncmb.getDouble("currentWeight"), 1);
+            imageId = ViewUtil.getImageByWeight(ncmb.getDouble("currentWeight"), 2);
         }catch(FileNotFoundException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -79,4 +82,23 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyPageActivity.class);
         startActivity(intent);
     }
+
+    //アバターIDを取得
+    public int getAvaterId() {
+        final int avaterId;
+        NCMBQuery<NCMBObject> query = new NCMBQuery<>("openUserData");
+        query.whereEqualTo("userName", this.userName);
+        query.findInBackground(new FindCallback<NCMBObject>() {
+            int avaterId;
+            @Override
+            public void done(List<NCMBObject> list, NCMBException e) {
+                avaterId = list.get(0).getInt("resId");
+            }
+            public int getId() {
+                return avaterId;
+            }
+        });
+        return avaterId;
+    }
 }
+
