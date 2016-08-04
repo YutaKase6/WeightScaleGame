@@ -114,6 +114,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
             Intent intent = new Intent(this, InputUserDataActivity.class);
             intent.putExtra(this.userNameKey, userName);
             intent.putExtra(this.passwordKey, password);
+            finish();
             startActivity(intent);
         } else {
 

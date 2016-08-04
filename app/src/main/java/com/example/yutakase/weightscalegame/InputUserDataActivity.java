@@ -62,6 +62,8 @@ public class InputUserDataActivity extends AppCompatActivity implements DoneCall
     String openUserData;
     @BindString(R.string.offset_weight_key)
     String offsetWeightKey;
+    @BindString(R.string.resource_id_key)
+    String resourceIdKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,15 +239,29 @@ public class InputUserDataActivity extends AppCompatActivity implements DoneCall
             user.signUpInBackground(doneCallback);
         }
 
-        public void saveData(DoneCallback doneCallback){
+        public void saveData(DoneCallback doneCallback) {
             NCMBUser user = NCMBUser.getCurrentUser();
-            user.put(startWeightKey,this.currentWeight);
-            user.put(goalWeightKey,this.goalWeight);
+            user.put(startWeightKey, this.currentWeight);
+            user.put(goalWeightKey, this.goalWeight);
             user.saveInBackground(doneCallback);
 
-//            NCMBObject openUserDataRecord = new NCMBObject(openUserData);
-//            openUserDataRecord.put(userNameKey,this.userName);
-//            openUserDataRecord.put(offsetWeightKey,);
+            NCMBObject openUserDataRecord = new NCMBObject(openUserData);
+            openUserDataRecord.put(userNameKey, this.userName);
+            double currentWeightValue = Double.parseDouble(this.currentWeight);
+            double goalWeightValue = Double.parseDouble(this.goalWeight);
+            openUserDataRecord.put(offsetWeightKey, currentWeightValue - goalWeightValue);
+            openUserDataRecord.put(resourceIdKey, (int)(Math.random() * 5 + 1));
+
+            openUserDataRecord.saveInBackground(new DoneCallback() {
+                @Override
+                public void done(NCMBException e) {
+                    if(e != null){
+
+                    }else {
+
+                    }
+                }
+            });
         }
 
     }

@@ -38,6 +38,7 @@
     <string name="goal_weight_key">goalWeight</string>
     <string name="offset_weight_key">offsetWeight</string>
     <string name="running_days_key">runningDays</string>
+    <string name="resource_id_key">resourceId</string>
     <string name="comment_key">comment</string>
     <string name="title_activity_input_user_data">Input Your Data</string>
 
