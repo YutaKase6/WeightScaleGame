@@ -44,32 +44,32 @@
             android:id="@+id/goal_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="目標までhogekg"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
-
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="19dp" />
+            android:layout_marginTop="19dp"
+
+            android:text="目標までhogekg"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/running_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="最終計測hoge日前"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
             android:layout_below="@+id/goal_text_view"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="最後に測った日hoge"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
             android:clickable="true"
             android:foregroundGravity="center_horizontal"
             android:scaleType="centerCrop"
@@ -81,11 +81,9 @@
             android:layout_height="40sp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-
             android:layout_marginBottom="15dp"
-
+            android:alpha="0.7"
             android:background="@drawable/frame_style"
-
             android:gravity="center"
             android:text="Record"
             android:textSize="22sp" />
