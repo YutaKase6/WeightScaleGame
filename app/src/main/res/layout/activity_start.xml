@@ -10,20 +10,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.yutakase.weightscalegame.StartActivity">
 
+    <ImageView
+        android:id="@+id/LogoImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-130dp"
+        android:clickable="true"
+        android:foregroundGravity="center_horizontal"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_single" />
+
+
     <TextView
-        android:id="@+id/start_text"
+        android:id="@+id/continue_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/start_tap_text" />
-
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="log out"
-        android:layout_toEndOf="@+id/start_text"
-        android:layout_toRightOf="@+id/start_text" />
-
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="140dp"
+        android:text="@string/continue_tap_text"
+        android:textSize="30dp" />
 </RelativeLayout>

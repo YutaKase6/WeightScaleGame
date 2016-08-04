@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">WeightScaleGame</string>
-    <string name="start_tap_text">Tap to Start</string>
+    <string name="start_tap_text">sign up</string>
+    <string name="continue_tap_text">Tap to Start</string>
     <string name="title_activity_login">Sign in</string>
 
     <string name="NCMB_app_key">f2c32b100ef8d52d6c26e551a132ef953d47598516fbc040ca689f5c7f2511e3</string>
@@ -32,5 +33,6 @@
     <string name="offset_weight_key">offsetWeight</string>
     <string name="running_days_key">runningDays</string>
     <string name="comment_key">comment</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 
 </resources>

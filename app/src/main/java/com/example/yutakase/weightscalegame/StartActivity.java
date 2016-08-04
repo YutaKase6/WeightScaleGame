@@ -28,11 +28,13 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         ButterKnife.bind(this);
 
+        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "assets/keifont.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
+
         // NCMB 初期設定
         NCMB.initialize(this.getApplicationContext(), this.APP_KEY, this.CLIENT_KEY);
     }
 
-    @OnClick(R.id.start_layout)
+    @OnClick(R.id.continue_text)
     public void onTap() {
         // ログインしていればホームへ
         if (NCMBUser.getCurrentUser().isAuthenticated()) {
@@ -41,17 +43,5 @@ public class StartActivity extends AppCompatActivity {
         } else {
             startActivity(new Intent(this, LoginActivity.class));
         }
-    }
-
-    @OnClick(R.id.logoutButton)
-    void a(final View view) {
-        NCMBUser.logoutInBackground(new DoneCallback() {
-            @Override
-            public void done(NCMBException e) {
-                Snackbar.make(view, "log out.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
     }
 }
