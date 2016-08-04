@@ -3,13 +3,13 @@ package com.example.yutakase.weightscalegame;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -42,9 +42,15 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
     View progressView;
     @Bind(R.id.login_form)
     View loginFormView;
+    @Bind(R.id.email_sign_in_button)
+    Button SignInButton;
 
     @BindString(R.string.error_field_required)
     String errorFieldRequired;
+    @BindString(R.string.user_name_key)
+    String userNameKey;
+    @BindString(R.string.password_key)
+    String passwordKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptLogin(SignInButton);
                     return true;
                 }
                 return false;
@@ -69,8 +75,8 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    @OnClick(R.id.email_sign_in_button)
-    void attemptLogin() {
+    @OnClick({R.id.email_sign_in_button, R.id.email_sign_up_button})
+    void attemptLogin(View view) {
         if (this.mAuthTask != null) {
             return;
         }
@@ -104,7 +110,14 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
+        } else if (view.getId() == R.id.email_sign_up_button) {
+            Intent intent = new Intent(this, InputUserDataActivity.class);
+            intent.putExtra(this.userNameKey, userName);
+            intent.putExtra(this.passwordKey, password);
+            finish();
+            startActivity(intent);
         } else {
+
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             this.showProgress(true);
