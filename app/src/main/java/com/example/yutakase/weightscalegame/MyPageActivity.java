@@ -2,11 +2,19 @@ package com.example.yutakase.weightscalegame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.TextAppearanceSpan;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.nifty.cloud.mb.core.DoneCallback;
 import com.nifty.cloud.mb.core.FindCallback;
 import com.nifty.cloud.mb.core.NCMBException;
 import com.nifty.cloud.mb.core.NCMBObject;
@@ -83,12 +91,46 @@ public class MyPageActivity extends AppCompatActivity implements FindCallback<NC
     // レイアウト成形
     private void buildLayout() {
         // 各々データを使って表示
+        TextAppearanceSpan Big = new TextAppearanceSpan(this, R.style.myTextAppearance);
+        SpannableStringBuilder sb = new SpannableStringBuilder();
+        sb.append(goalText);
+        int start = sb.length();
+        sb.append("" + this.myData.getDouble(this.offsetWeightKey));
+        sb.setSpan(Big, start, sb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.append(this.kgText);
+
         String goalText = this.goalText + this.myData.getDouble(this.offsetWeightKey) + this.kgText;
-        this.goalTextView.setText(goalText);
-        String runningText = this.runningBeforeText + this.myData.getInt(this.runningDaysKey) + this.runningAfterText;
+        this.goalTextView.setText(sb);
+        String runningText = "最終計測日 " + Util.getDate(this.myData.getString("updateDate"), this);
         this.runningTextView.setText(runningText);
 
         this.showProgress(false);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        MenuItem item = menu.add(0, 0, 0, "Logout");
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == 0) {
+            NCMBUser.logoutInBackground(new DoneCallback() {
+                @Override
+                public void done(NCMBException e) {
+                    Snackbar.make(myPageLayout, "log out.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    Intent intent = new Intent(getApplication(), StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            });
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @OnClick(R.id.record_button)
@@ -99,7 +141,7 @@ public class MyPageActivity extends AppCompatActivity implements FindCallback<NC
     // データ受信終了時に呼ばれる
     @Override
     public void done(List<NCMBObject> list, NCMBException e) {
-        if (e != null) {
+        if (e != null && list == null && list.size() == 0) {
             //errorだったらActivity閉じちゃう
             finish();
         } else {
