@@ -7,6 +7,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
     <style name="myTextAppearance" parent="@android:style/TextAppearance">
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 </resources>
