@@ -1,14 +1,11 @@
 package com.example.yutakase.weightscalegame;
 
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
-import com.nifty.cloud.mb.core.DoneCallback;
+import com.example.yutakase.weightscalegame.utils.TypefaceUtil;
 import com.nifty.cloud.mb.core.NCMB;
-import com.nifty.cloud.mb.core.NCMBException;
 import com.nifty.cloud.mb.core.NCMBUser;
 
 import butterknife.BindString;

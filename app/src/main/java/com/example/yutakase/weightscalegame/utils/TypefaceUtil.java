@@ -1,4 +1,4 @@
-package com.example.yutakase.weightscalegame;
+package com.example.yutakase.weightscalegame.utils;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.Log;
