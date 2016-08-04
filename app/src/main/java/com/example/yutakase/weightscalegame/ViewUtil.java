@@ -89,7 +89,7 @@ public final class ViewUtil {
         }
 
         //int resourceId = context.getResources().getIdentifier(imageName, "Drawable", context.getPackageName());;
-        int resourceId = resources[avatarId-1][index];
+        int resourceId = resources[avatarId+1][index];
         //エラー処理
         if(resourceId == 0) {
             throw new FileNotFoundException("アバターを読み込めませんでした");

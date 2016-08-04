@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView userNameView;
     private ImageView background;
     private ImageView image;
+    private int avaterId;
     private Button leftButton;
     private Button centerButton;
     private Button rightButton;
@@ -60,7 +61,7 @@ public class HomeActivity extends AppCompatActivity {
         image = (ImageView) findViewById(R.id.avator);
         int imageId = 0;
         try {
-            imageId = ViewUtil.getImageByWeight(ncmb.getDouble("currentWeight"), 2);
+            imageId = ViewUtil.getImageByWeight(ncmb.getDouble("currentWeight"), getAvaterId());
         }catch(FileNotFoundException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -85,20 +86,17 @@ public class HomeActivity extends AppCompatActivity {
 
     //アバターIDを取得
     public int getAvaterId() {
-        final int avaterId;
         NCMBQuery<NCMBObject> query = new NCMBQuery<>("openUserData");
         query.whereEqualTo("userName", this.userName);
         query.findInBackground(new FindCallback<NCMBObject>() {
-            int avaterId;
             @Override
             public void done(List<NCMBObject> list, NCMBException e) {
-                avaterId = list.get(0).getInt("resId");
-            }
-            public int getId() {
-                return avaterId;
+                avaterId = list.get(0).getInt("resourceId");
             }
         });
         return avaterId;
     }
 }
+
+
 
