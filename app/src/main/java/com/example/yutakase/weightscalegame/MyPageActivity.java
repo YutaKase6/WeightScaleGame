@@ -102,11 +102,9 @@ public class MyPageActivity extends AppCompatActivity implements FindCallback<NC
         sb.append(this.kgText);
 
 
-
-
         String goalText = this.goalText + stringFormat + this.kgText;
         this.goalTextView.setText(sb);
-        String runningText = "最後に測った日" + Util.getDate(this.myData.getString("updateDate"), this);
+        String runningText = "最後に測った日 " + Util.getDate(this.myData.getString("updateDate"), this);
         this.runningTextView.setText(runningText);
 
         this.showProgress(false);
@@ -146,8 +144,10 @@ public class MyPageActivity extends AppCompatActivity implements FindCallback<NC
     // データ受信終了時に呼ばれる
     @Override
     public void done(List<NCMBObject> list, NCMBException e) {
-        if (e != null && list == null && list.size() == 0) {
+        if (e != null && list == null) {
             //errorだったらActivity閉じちゃう
+            finish();
+        } else if (list.size() == 0) {
             finish();
         } else {
             // 合致データは一つしか無いので0番めを取得
