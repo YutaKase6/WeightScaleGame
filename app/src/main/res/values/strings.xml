@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WeightScaleGame</string>
     <string name="start_tap_text">Tap to Start</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Sign in or Sign up</string>
 
     <string name="NCMB_app_key">f2c32b100ef8d52d6c26e551a132ef953d47598516fbc040ca689f5c7f2511e3</string>
     <string name="NCMB_client_key">98e81650a4848de54e442524878b10a1bb4c7e5e351c1d9f6d80919b635814b5</string>
@@ -9,8 +9,12 @@
     <!-- Strings related to login -->
     <string name="prompt_user_name">User Name</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="prompt_current_weight">現在の体重、単位(Kg)は除く(例：95)</string>
+    <string name="prompt_goal_weight">目標体重、単位(Kg)は除く(例：50)</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Sign up</string>
     <string name="error_field_required">This field is required</string>
+    <string name="error_field_not_number">Please input number</string>
 
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_my_page">MyPageActivity</string>
@@ -29,8 +33,12 @@
     <!--String related to Database-->
     <string name="open_user_data_class">openUserData</string>
     <string name="user_name_key">userName</string>
+    <string name="password_key">password</string>
+    <string name="start_weight_key">startWeight</string>
+    <string name="goal_weight_key">goalWeight</string>
     <string name="offset_weight_key">offsetWeight</string>
     <string name="running_days_key">runningDays</string>
     <string name="comment_key">comment</string>
+    <string name="title_activity_input_user_data">Input Your Data</string>
 
 </resources>
