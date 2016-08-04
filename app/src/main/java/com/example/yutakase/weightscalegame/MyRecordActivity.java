@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.BindColor;
 import butterknife.ButterKnife;
 
 /**
@@ -37,6 +38,10 @@ public class MyRecordActivity extends AppCompatActivity {
     TextView todayWeight;
     @Bind(R.id.last_weight)
     TextView lastWeight;
+    @BindColor(R.color.colorGray)
+    int colorGray;
+    @BindColor(R.color.colorAccent)
+    int colorAccent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +76,17 @@ public class MyRecordActivity extends AppCompatActivity {
                 ArrayList<Bar> bars = new ArrayList<>();
                 for (int i = 6; i >= 0; i--) {
                     Bar bar = new Bar();
-                    bar.setColor(Color.BLUE);
+                    if (i == 0) {
+                        bar.setColor(colorAccent);
+                    } else {
+                        bar.setColor(colorGray);
+                    }
                     double weightValue = list.get(i).getDouble("weight");
                     bar.setValue((float) weightValue);
                     String date = list.get(i).getString("createDate");
-                    bar.setName(date);
-                    bar.setValueString(weightValue + "kg");
+                    bar.setName(Util.getDate(date, getApplicationContext()));
+                    stringFormat = String.format("%.1f", weightValue);
+                    bar.setValueString(stringFormat + "kg");
                     bars.add(bar);
                 }
                 graph.setBars(bars);
