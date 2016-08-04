@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 /**
  * 自分の過去のデータを表示する画面
  */
+
 public class MyRecordActivity extends AppCompatActivity {
     @Bind(R.id.progress)
     View progress;

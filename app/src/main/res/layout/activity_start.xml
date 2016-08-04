@@ -29,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:paddingLeft="10dp"
+        android:paddingTop="100dp"
         android:foregroundGravity="center_horizontal"
-        android:paddingTop="48dp"
         android:scaleType="fitEnd"
         android:src="@drawable/start_bottom_graph" />
 
