@@ -59,13 +59,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //画像の読み込み
         image = (ImageView) findViewById(R.id.avator);
-        int imageId = 0;
-        try {
-            imageId = ViewUtil.getImageByWeight(ncmb.getDouble("currentWeight"), getAvaterId());
-        }catch(FileNotFoundException e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-        image.setImageResource(imageId);
+        setAvator(ncmb);
 
         Button leftButton = (Button) findViewById(R.id.leftButton);
         Button centerButton = (Button) findViewById(R.id.centerButton);
@@ -84,17 +78,28 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //アバターIDを取得
-    public int getAvaterId() {
+    //アバターを表示
+    public void setAvator(NCMBUser ncmb) {
+        //アバターIDを取得
         NCMBQuery<NCMBObject> query = new NCMBQuery<>("openUserData");
         query.whereEqualTo("userName", this.userName);
         query.findInBackground(new FindCallback<NCMBObject>() {
             @Override
             public void done(List<NCMBObject> list, NCMBException e) {
                 avaterId = list.get(0).getInt("resourceId");
+
+                //取得したアバターIDを使ってアバターを表示
+                int imageId = 0;
+                try {
+                    imageId = ViewUtil.getImageByWeight(new NCMBUser().getDouble("currentWeight"), avaterId);
+                }catch(FileNotFoundException fnfe) {
+                    //Toast.makeText(this, fnfe.getMessage(), Toast.LENGTH_LONG).show();
+                }
+                image.setImageResource(imageId);
             }
         });
-        return avaterId;
+
+
     }
 }
 
