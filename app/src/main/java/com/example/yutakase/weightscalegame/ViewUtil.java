@@ -5,7 +5,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
+
+import com.nifty.cloud.mb.core.NCMBUser;
 
 /**
  * View関係の共通処理の関数群
@@ -51,5 +54,35 @@ public final class ViewUtil {
             progressView.setVisibility(show ? View.VISIBLE : View.GONE);
             HideView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
+    }
+
+    /**
+     * 増減体重に応じて画像のリソースIDを返すメソッド
+     * Created by takeshishimizu on 2016/08/03.
+     */
+    public static int getImageByWeight(double currentWeight, double startWeight, double goalWeight, int avatarId) {
+
+        int[][] resources = {{R.drawable.c1_1, R.drawable.c1_2, R.drawable.c1_3, R.drawable.c1_4},
+                {R.drawable.c2_1, R.drawable.c2_2, R.drawable.c2_3, R.drawable.c2_4},
+                {R.drawable.c3_1, R.drawable.c3_2, R.drawable.c3_3, R.drawable.c3_4},
+                {R.drawable.c4_1, R.drawable.c4_2, R.drawable.c4_3, R.drawable.c4_4},
+                {R.drawable.c5_1, R.drawable.c5_2, R.drawable.c5_3, R.drawable.c5_4}
+        };
+
+        double marginWeight = startWeight - goalWeight;
+
+        int index;
+        if (startWeight - (marginWeight * 2) / 3 < currentWeight) {
+            index = 3;
+        } else if (goalWeight - marginWeight / 3 > currentWeight) {
+            index = 0;
+        } else if (goalWeight < currentWeight) {
+            index = 2;
+        } else {
+            index = 1;
+        }
+        Log.e("", "" + index);
+        //int resourceId = context.getResources().getIdentifier(imageName, "Drawable", context.getPackageName());;
+        return resources[avatarId - 1][index];
     }
 }

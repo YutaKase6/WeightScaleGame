@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.yutakase.weightscalegame.MyPageActivity"
+    tools:context=".UserDetailActivity"
     tools:showIn="@layout/activity_my_page">
 
     <!-- progress -->
@@ -30,6 +30,17 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/background" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:clickable="true"
+            android:foregroundGravity="center_horizontal"
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -63,17 +74,6 @@
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:clickable="true"
-            android:foregroundGravity="center_horizontal"
-            android:scaleType="centerCrop"
-            android:src="@drawable/chara1" />
 
         <Button
             android:id="@+id/record_button"

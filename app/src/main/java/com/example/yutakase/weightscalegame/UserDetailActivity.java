@@ -12,6 +12,8 @@ import android.text.style.TextAppearanceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nifty.cloud.mb.core.DoneCallback;
@@ -31,7 +33,7 @@ import butterknife.OnClick;
 /**
  * 自分の情報を表示する画面
  */
-public class MyPageActivity extends AppCompatActivity implements FindCallback<NCMBObject> {
+public class UserDetailActivity extends AppCompatActivity implements FindCallback<NCMBObject> {
 
     String userName;
     NCMBObject myData;
@@ -45,6 +47,10 @@ public class MyPageActivity extends AppCompatActivity implements FindCallback<NC
     View progressView;
     @Bind(R.id.my_page_layout)
     View myPageLayout;
+    @Bind(R.id.imageView)
+    ImageView image;
+    @Bind(R.id.record_button)
+    Button recordButton;
 
     // DataBase関係
     @BindString(R.string.open_user_data_class)
@@ -53,18 +59,12 @@ public class MyPageActivity extends AppCompatActivity implements FindCallback<NC
     String userNameKey;
     @BindString(R.string.offset_weight_key)
     String offsetWeightKey;
-    @BindString(R.string.running_days_key)
-    String runningDaysKey;
 
     // 表示関係
     @BindString(R.string.goal_text)
     String goalText;
     @BindString(R.string.kg)
     String kgText;
-    @BindString(R.string.running_before_text)
-    String runningBeforeText;
-    @BindString(R.string.running_after_text)
-    String runningAfterText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +75,14 @@ public class MyPageActivity extends AppCompatActivity implements FindCallback<NC
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        userName = getIntent().getStringExtra(userNameKey);
+        if (!this.userName.equals(NCMBUser.getCurrentUser().getUserName())) {
+            this.recordButton.setVisibility(View.INVISIBLE);
+        }
+
         // Toolbarに名前を表示
-        NCMBUser user = NCMBUser.getCurrentUser();
-        userName = user.getUserName();
         setTitle(userName + "さんの部屋");
+//        setTitle("てらだ" + "さんの部屋");
 
         // 自分のデータを取得
         // TODO: 2016/08/03 onCreateの度に通信走るのはあかんかも、結局どんだけデータベースと一貫性とるか
@@ -96,15 +100,16 @@ public class MyPageActivity extends AppCompatActivity implements FindCallback<NC
         sb.append(goalText);
         int start = sb.length();
         double offset = this.myData.getDouble(this.offsetWeightKey);
+//        double offset = 3.1;
         String stringFormat = String.format("%.1f", offset);
         sb.append(stringFormat);
         sb.setSpan(Big, start, sb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         sb.append(this.kgText);
 
-
         String goalText = this.goalText + stringFormat + this.kgText;
         this.goalTextView.setText(sb);
         String runningText = "最後に測った日 " + Util.getDate(this.myData.getString("updateDate"), this);
+//        String runningText = "最後に測った日  7/29 ";
         this.runningTextView.setText(runningText);
 
         this.showProgress(false);
@@ -152,7 +157,25 @@ public class MyPageActivity extends AppCompatActivity implements FindCallback<NC
         } else {
             // 合致データは一つしか無いので0番めを取得
             this.myData = list.get(0);
-            this.buildLayout();
+            final int avaterId = this.myData.getInt("resourceId");
+            //取得したアバターIDを使ってアバターを表示
+            NCMBQuery<NCMBObject> query = new NCMBQuery<>("WeightLog");
+            query.whereEqualTo("userName", userName);
+            query.addOrderByDescending("createDate");
+            query.findInBackground(new FindCallback<NCMBObject>() {
+                @Override
+                public void done(List<NCMBObject> list, NCMBException e) {
+                    if (e != null && list == null) {
+                        finish();
+                    } else if (list.size() == 0) {
+                        finish();
+                    } else {
+                        int imageId = ViewUtil.getImageByWeight(list.get(0).getDouble("weight"), myData.getDouble("startWeight"), myData.getDouble("goalWeight"), avaterId);
+                        image.setImageResource(imageId);
+                        buildLayout();
+                    }
+                }
+            });
         }
     }
 
