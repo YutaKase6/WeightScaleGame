@@ -59,7 +59,8 @@ public class HomeActivity extends AppCompatActivity {
 
         //画像の読み込み
         image = (ImageView) findViewById(R.id.avator);
-        setAvator(ncmb);
+        //setAvator(ncmb);
+        image.setImageResource(R.drawable.chara1normal);
 
         Button leftButton = (Button) findViewById(R.id.leftButton);
         Button centerButton = (Button) findViewById(R.id.centerButton);
@@ -90,11 +91,11 @@ public class HomeActivity extends AppCompatActivity {
 
                 //取得したアバターIDを使ってアバターを表示
                 int imageId = 0;
-                try {
-                    imageId = ViewUtil.getImageByWeight(new NCMBUser().getDouble("currentWeight"), avaterId);
-                }catch(FileNotFoundException fnfe) {
-                    //Toast.makeText(this, fnfe.getMessage(), Toast.LENGTH_LONG).show();
-                }
+//                try {
+//                    imageId = ViewUtil.getImageByWeight(new NCMBUser().getDouble("currentWeight"), avaterId);
+//                }catch(FileNotFoundException fnfe) {
+//                    //Toast.makeText(this, fnfe.getMessage(), Toast.LENGTH_LONG).show();
+//                }
                 image.setImageResource(imageId);
             }
         });
