@@ -50,6 +50,9 @@
             android:name=".MySettingActivity"
             android:label="@string/title_activity_my_setting_main"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".InputUserDataActivity"
+            android:label="@string/title_activity_input_user_data"/>
     </application>
 
 </manifest>
