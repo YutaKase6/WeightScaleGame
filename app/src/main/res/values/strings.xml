@@ -33,8 +33,10 @@
 
     <!--String related to Database-->
     <string name="open_user_data_class">openUserData</string>
+    <string name="weight_log_class">WeightLog</string>
     <string name="user_name_key">userName</string>
     <string name="password_key">password</string>
+    <string name="weight_key">weight</string>
     <string name="start_weight_key">startWeight</string>
     <string name="goal_weight_key">goalWeight</string>
     <string name="offset_weight_key">offsetWeight</string>

@@ -60,10 +60,14 @@ public class InputUserDataActivity extends AppCompatActivity implements DoneCall
     String goalWeightKey;
     @BindString(R.string.open_user_data_class)
     String openUserData;
+    @BindString(R.string.weight_log_class)
+    String weightLog;
     @BindString(R.string.offset_weight_key)
     String offsetWeightKey;
     @BindString(R.string.resource_id_key)
     String resourceIdKey;
+    @BindString(R.string.weight_key)
+    String weightKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -253,6 +257,20 @@ public class InputUserDataActivity extends AppCompatActivity implements DoneCall
             openUserDataRecord.put(resourceIdKey, (int)(Math.random() * 5 + 1));
 
             openUserDataRecord.saveInBackground(new DoneCallback() {
+                @Override
+                public void done(NCMBException e) {
+                    if(e != null){
+
+                    }else {
+
+                    }
+                }
+            });
+
+            NCMBObject weightLogRecord = new NCMBObject(weightLog);
+            weightLogRecord.put(userNameKey, this.userName);
+            weightLogRecord.put(weightKey, this.currentWeight);
+            weightLogRecord.saveInBackground(new DoneCallback() {
                 @Override
                 public void done(NCMBException e) {
                     if(e != null){

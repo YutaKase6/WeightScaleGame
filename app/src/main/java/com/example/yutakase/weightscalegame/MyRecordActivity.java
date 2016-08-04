@@ -63,34 +63,41 @@ public class MyRecordActivity extends AppCompatActivity {
         query.findInBackground(new FindCallback<NCMBObject>() {
             @Override
             public void done(List<NCMBObject> list, NCMBException e) {
-                if (e != null) {
+                if (e != null && list == null) {
                     setTitle(e.getMessage());
-                }
-                double todayWeightValue = list.get(0).getDouble("weight");
-                String stringFormat = String.format("%1$.1f", todayWeightValue);
-                todayWeight.setText(stringFormat);
-                double lastWeightValue = list.get(1).getDouble("weight");
-                stringFormat = String.format("%1$.1f", lastWeightValue);
-                lastWeight.setText(stringFormat);
-
-                ArrayList<Bar> bars = new ArrayList<>();
-                for (int i = 6; i >= 0; i--) {
-                    Bar bar = new Bar();
-                    if (i == 0) {
-                        bar.setColor(colorAccent);
-                    } else {
-                        bar.setColor(colorGray);
+                    finish();
+                } else if (list.size() == 0) {
+                    finish();
+                } else {
+                    double todayWeightValue = list.get(0).getDouble("weight");
+                    String stringFormat = String.format("%1$.1f", todayWeightValue);
+                    todayWeight.setText(stringFormat);
+                    if (list.size() > 1) {
+                        double lastWeightValue = list.get(1).getDouble("weight");
+                        stringFormat = String.format("%1$.1f", lastWeightValue);
+                        lastWeight.setText(stringFormat);
                     }
-                    double weightValue = list.get(i).getDouble("weight");
-                    bar.setValue((float) weightValue);
-                    String date = list.get(i).getString("createDate");
-                    bar.setName(Util.getDate(date, getApplicationContext()));
-                    stringFormat = String.format("%.1f", weightValue);
-                    bar.setValueString(stringFormat + "kg");
-                    bars.add(bar);
+
+                    ArrayList<Bar> bars = new ArrayList<>();
+                    int graphSize = (list.size() < 7) ? list.size() : 7;
+                    for (int i = graphSize - 1; i >= 0; i--) {
+                        Bar bar = new Bar();
+                        if (i == 0) {
+                            bar.setColor(colorAccent);
+                        } else {
+                            bar.setColor(colorGray);
+                        }
+                        double weightValue = list.get(i).getDouble("weight");
+                        bar.setValue((float) weightValue);
+                        String date = list.get(i).getString("createDate");
+                        bar.setName(Util.getDate(date, getApplicationContext()));
+                        stringFormat = String.format("%.1f", weightValue);
+                        bar.setValueString(stringFormat + "kg");
+                        bars.add(bar);
+                    }
+                    graph.setBars(bars);
+                    showProgress(false);
                 }
-                graph.setBars(bars);
-                showProgress(false);
             }
         });
     }

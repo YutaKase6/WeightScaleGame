@@ -94,7 +94,7 @@
                     android:layout_alignStart="@+id/today_weight"
                     android:layout_below="@+id/today_weight"
                     android:layout_marginTop="21dp"
-                    android:text="昨日"
+                    android:text=""
                     android:textSize="30dp" />
 
 
